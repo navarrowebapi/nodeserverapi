@@ -46,6 +46,18 @@ router.route('/produtos')
         });
     })
 
+router.route('/produtos')
+        .get(function(req, res){
+            Produto.find(function(err, prods){
+                if(err)
+                    res.send(err);
+
+                res.status(200).json({
+                    message:"produtos retornados",
+                    produtos: prods
+                });
+            });
+        })    
 
 //Vincular a aplicacao (app) com o motor de rotas
 app.use('/api', router);
